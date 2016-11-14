@@ -52,7 +52,9 @@ training <- training[, -nzv]
 mostlyNA <- sapply(training, function(x) mean(is.na(x))) > 0.95
 training <- training[, mostlyNA==F]
 
-# remove variables that do not make intuitive sense for prediction (X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp, num_window), which happen to be the first 6 variables.
+# remove variables that do not make intuitive sense for prediction (X, user_name,
+# raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp, num_window), which 
+# happen to be the first 6 variables.
 training <- training[, -(1:6)]
 ```
 Because of the large amount of data available, I decided to further split the training data into a smaller training set (80% of original training data) and a validation set (20% of original training data).  I then use the smaller training set to train different models and then I use the new validation set to compute out-of-sample errors after the models are created.
@@ -139,7 +141,9 @@ cmACPM <- confusionMatrix(predACPM, validation$classe)
 # Random Forest has the highest accuracy (99.46%), followed by Bagged CART (98.06%)
 AccuracyResults <- data.frame(
     Model = c('CART', 'GBM', 'RF', 'BAG', 'ACPM'),
-    Accuracy = rbind(cmCART$overall[1], cmGBM$overall[1], cmRF$overall[1], cmBAG$overall[1], cmACPM$overall[1]),
+    Accuracy = rbind(cmCART$overall[1], cmGBM$overall[1], 
+                     cmRF$overall[1], cmBAG$overall[1], 
+                     cmACPM$overall[1]),
     Duration = rbind(TimeCART, TimeGBM, TimeRF,TimeBAG,TimeACPM)
 )
 print(AccuracyResults)
