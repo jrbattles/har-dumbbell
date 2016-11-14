@@ -2,7 +2,7 @@
 title: "Practical Machine Learning - HAR Dumbbell"
 author: "Jason Battles"
 date: "November 13, 2016"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
